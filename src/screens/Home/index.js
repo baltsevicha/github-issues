@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
 import { Form, Field } from 'react-final-form';
 
-import validations from '../../packages/validations';
+import validations from 'src/packages/validations';
 
 import Input from './Input';
 import styles from './styles';
