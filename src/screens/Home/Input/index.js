@@ -7,6 +7,7 @@ const Input = ({
   label,
   autoFocus = false,
   input: { name, value, onChange },
+  meta: { error },
 }) => {
   return (
     <View style={styles.container}>
@@ -18,6 +19,7 @@ const Input = ({
         onChangeText={onChange}
         style={styles.input}
       />
+      {Boolean(error) && <Text style={styles.error}>{error}</Text>}
     </View>
   );
 };

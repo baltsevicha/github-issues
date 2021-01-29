@@ -4,11 +4,12 @@ export default StyleSheet.create({
   container: {
     paddingTop: 8,
     paddingRight: 16,
-    paddingBottom: 8,
+    paddingBottom: 12,
     paddingLeft: 16,
+    position: 'relative',
   },
   label: {
-    marginBottom: 12,
+    marginBottom: 8,
     fontSize: 24,
   },
   input: {
@@ -18,5 +19,11 @@ export default StyleSheet.create({
     fontSize: 24,
     height: 36,
     padding: 6,
+  },
+  error: {
+    position: 'absolute',
+    bottom: -8,
+    left: 16,
+    color: 'red',
   },
 });
