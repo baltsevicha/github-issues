@@ -4,6 +4,6 @@ import { SCREENS } from 'src/constants/screens';
 
 import Home from './Home';
 
-export const registerScreens = (ProviderWrapper) => {
-  Navigation.registerComponent(SCREENS.HOME, ProviderWrapper(Home), () => Home);
+export const registerScreens = (storeWrapper) => {
+  Navigation.registerComponent(SCREENS.HOME, storeWrapper(Home), () => Home);
 };

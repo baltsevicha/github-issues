@@ -1,10 +1,11 @@
 import { Navigation } from 'react-native-navigation';
 
 import { SCREENS } from './constants/screens';
-import { ProviderWrapper } from './redux';
 import { registerScreens } from './screens';
+import createStoreWrapper from './createStoreWrapper';
 
-registerScreens(ProviderWrapper);
+const storeWrapper = createStoreWrapper();
+registerScreens(storeWrapper);
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({
