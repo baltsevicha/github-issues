@@ -1,18 +1,26 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
+import { Navigation } from 'react-native-navigation';
 
-import api, { SERVER_ERRORS } from 'src/packages/api';
+import { SCREENS } from 'src/constants/screens';
+import api from 'src/packages/api';
+
 import { submitForm, toggleLoading } from '../actions';
 
 function* handleSubmit(action) {
   yield put(toggleLoading());
 
   try {
-    const data = yield call(api.issues.fetchIssues, action.payload);
+    const data = yield call(api.issues.fetchIssues, action.payload.data);
     console.log('aaa data = ', Object.keys(data));
   } catch (error) {
-    if (error.message === SERVER_ERRORS.NOT_FOUND) {
-      console.log('REDIRECT TO NOT FOUND');
-    }
+    Navigation.push(action.payload.componentId, {
+      component: {
+        name: SCREENS.ERROR,
+        passProps: {
+          errorMessage: error.message,
+        },
+      },
+    });
   } finally {
     yield put(toggleLoading());
   }

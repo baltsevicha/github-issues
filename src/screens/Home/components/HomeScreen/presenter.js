@@ -4,7 +4,7 @@ import validations from 'src/packages/validations';
 
 import { submitForm } from '../../actions';
 
-export default () => {
+export default ({ componentId }) => {
   const dispatch = useDispatch();
 
   return {
@@ -13,6 +13,6 @@ export default () => {
       repository: 'react-native-navigation',
     },
     validate: validations.fetchIssues,
-    onSubmit: (data) => dispatch(submitForm(data)),
+    onSubmit: (data) => dispatch(submitForm({ componentId, data })),
   };
 };

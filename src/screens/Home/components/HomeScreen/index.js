@@ -4,8 +4,8 @@ import { Form } from 'react-final-form';
 import FormComponent from '../Form';
 import usePresenter from './presenter';
 
-const Home = () => {
-  const { initialValues, onSubmit, validate } = usePresenter();
+const Home = (props) => {
+  const { initialValues, onSubmit, validate } = usePresenter(props);
 
   return (
     <Form
