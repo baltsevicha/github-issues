@@ -1,13 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import {
-  fetchIssuesRequest,
-  fetchIssuesSuccess,
-  fetchIssuesFailure,
-} from 'src/actions/issues';
+import { toggleLoading } from '../actions';
 
 export default createReducer(false, {
-  [fetchIssuesRequest.type]: () => true,
-  [fetchIssuesSuccess.type]: () => false,
-  [fetchIssuesFailure.type]: () => false,
+  [toggleLoading.type]: (state) => !state,
 });

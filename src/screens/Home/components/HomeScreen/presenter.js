@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux';
 
 import validations from 'src/packages/validations';
-import { fetchIssuesRequest } from 'src/actions/issues';
+
+import { submitForm } from '../../actions';
 
 export default () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ export default () => {
       organization: 'wix',
       repository: 'react-native-navigation',
     },
-    onSubmit: (data) => dispatch(fetchIssuesRequest(data)),
     validate: validations.fetchIssues,
+    onSubmit: (data) => dispatch(submitForm(data)),
   };
 };

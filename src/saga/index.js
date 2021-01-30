@@ -1,9 +1,7 @@
 import { all } from 'redux-saga/effects';
 
-import hanleRequest from './hanleRequest';
+import handleScreens from './handleScreens';
 
-function* saga() {
-  yield all([hanleRequest()]);
+export default function* () {
+  yield all([handleScreens()]);
 }
-
-export default saga;
