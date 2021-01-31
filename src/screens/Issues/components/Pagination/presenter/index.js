@@ -1,17 +1,31 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { ISSUES_PER_PAGE } from 'src/constants/issues';
-
+import { loadNextPage } from '../../../actions';
 import selectors from '../../../selectors';
-import usePagination from './pagination';
 
 export default () => {
-  const issuesCount = useSelector(selectors.getIssuesCount);
-  const pagesCount = Math.ceil(issuesCount / ISSUES_PER_PAGE);
-  const pagination = usePagination(pagesCount);
+  const dispatch = useDispatch();
+
+  const hasPagination = useSelector(selectors.getHasPagination);
+  const paginationList = useSelector(selectors.getPaginationList);
+  const isDisabledPagination = useSelector(selectors.getIsDisabledPagination);
+
+  const changePage = (index) => () => dispatch(loadNextPage(index));
+
+  const paginationListWithActions = paginationList.map((item, index) => {
+    if (item.title === '...' || item.isActive) {
+      return item;
+    }
+
+    return {
+      ...item,
+      onClick: changePage(item.key),
+    };
+  });
 
   return {
-    hasPagination: pagesCount > 1,
-    paginationList: pagination.items,
+    hasPagination,
+    paginationList: paginationListWithActions,
+    isDisabledPagination,
   };
 };

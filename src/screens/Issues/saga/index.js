@@ -1,9 +1,9 @@
 import { takeLatest } from 'redux-saga/effects';
 
-import { changeCurrentPage } from '../actions';
+import { loadNextPage } from '../actions';
 
-function* handleChangeCurrentPage() {}
+function* updateIssues() {}
 
 export default function* () {
-  yield takeLatest(changeCurrentPage.type, handleChangeCurrentPage);
+  yield takeLatest(loadNextPage.type, updateIssues);
 }
