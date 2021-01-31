@@ -9,10 +9,17 @@ export default ({ componentId }) => {
 
   return {
     initialValues: {
-      organization: 'wix',
-      repository: 'react-native-navigation',
+      organization: 'JedWatson',
+      repository: 'classnames',
     },
     validate: validations.fetchIssues,
-    onSubmit: (data) => dispatch(submitForm({ componentId, data })),
+    onSubmit: (data) =>
+      dispatch(
+        submitForm({
+          componentId,
+          organization: data.organization,
+          repository: data.repository,
+        })
+      ),
   };
 };

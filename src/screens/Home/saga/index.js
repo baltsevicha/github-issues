@@ -9,9 +9,25 @@ import { submitForm, toggleLoading } from '../actions';
 function* handleSubmit(action) {
   yield put(toggleLoading());
 
+  const { organization, repository } = action.payload;
+
   try {
-    const data = yield call(api.issues.fetchIssues, action.payload.data);
-    console.log('aaa data = ', Object.keys(data));
+    const { issues, issuesCount } = yield call(api.issues.fetchIssues, {
+      organization,
+      repository,
+    });
+
+    Navigation.push(action.payload.componentId, {
+      component: {
+        name: SCREENS.ISSUES,
+        passProps: {
+          issues,
+          issuesCount,
+          organization,
+          repository,
+        },
+      },
+    });
   } catch (error) {
     Navigation.push(action.payload.componentId, {
       component: {
