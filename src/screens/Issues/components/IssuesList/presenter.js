@@ -1,9 +1,16 @@
+import { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import selectors from '../../selectors';
 
 export default () => {
+  const listRef = useRef();
+
   const issues = useSelector(selectors.getIssues);
 
-  return { issues };
+  useEffect(() => {
+    listRef.current.scrollToOffset({ offset: 0 });
+  }, [issues]);
+
+  return { issues, listRef };
 };

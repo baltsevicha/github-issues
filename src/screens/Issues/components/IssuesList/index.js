@@ -5,10 +5,11 @@ import usePresenter from './presenter';
 import styles from './styles';
 
 const IssuesList = () => {
-  const { issues } = usePresenter();
+  const { issues, listRef } = usePresenter();
 
   return (
     <FlatList
+      ref={listRef}
       data={issues}
       renderItem={({ item }) => {
         return (

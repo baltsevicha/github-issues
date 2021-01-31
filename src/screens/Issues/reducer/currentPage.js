@@ -1,11 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { initIssues, resetIssues, changeCurrentPage } from '../actions';
+import { initIssues, resetIssues, updateCurrentPage } from '../actions';
 
 const defaultValue = 0;
 
 export default createReducer(defaultValue, {
   [initIssues.type]: () => defaultValue,
   [resetIssues.type]: () => defaultValue,
-  [changeCurrentPage.type]: (state, action) => action.payload,
+  [updateCurrentPage.type]: (state, action) => action.payload,
 });

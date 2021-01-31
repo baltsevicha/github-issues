@@ -8,9 +8,9 @@ export default StyleSheet.create({
     marginBottom: 12,
   },
   item: {
-    marginLeft: 8,
-    marginRight: 8,
-    minWidth: 50,
+    marginLeft: 2,
+    marginRight: 2,
+    minWidth: 40,
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
@@ -18,8 +18,8 @@ export default StyleSheet.create({
   itemText: {
     fontSize: 20,
     textAlign: 'center',
-    paddingLeft: 4,
-    paddingRight: 4,
+    paddingLeft: 2,
+    paddingRight: 2,
   },
   activeItemText: {
     color: 'red',

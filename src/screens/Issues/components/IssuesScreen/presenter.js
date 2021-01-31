@@ -3,11 +3,19 @@ import { useDispatch } from 'react-redux';
 
 import { initIssues, resetIssues } from '../../actions';
 
-export default ({ organization, repository, issuesCount, issues }) => {
+export default ({
+  componentId,
+  organization,
+  repository,
+  issuesCount,
+  issues,
+}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(initIssues({ issues, issuesCount }));
+    dispatch(
+      initIssues({ componentId, organization, repository, issues, issuesCount })
+    );
     return () => {
       dispatch(resetIssues());
     };

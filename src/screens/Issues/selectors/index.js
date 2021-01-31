@@ -2,6 +2,9 @@ import { ISSUES_PER_PAGE } from 'src/constants/issues';
 
 const getState = (state) => state.screens.issues;
 
+const getComponentId = (state) => getState(state).componentId;
+const getOrganization = (state) => getState(state).organization;
+const getRepository = (state) => getState(state).repository;
 const getIssues = (state) => getState(state).issues;
 const getIssuesCount = (state) => getState(state).issuesCount;
 const getCurrentPage = (state) => getState(state).currentPage;
@@ -88,7 +91,12 @@ const getPaginationList = (state) => {
 };
 
 export default {
+  getComponentId,
+  getOrganization,
+  getRepository,
   getIssues,
+  getCurrentPage,
+  getNextPage,
   getIssuesCount,
   getHasPagination,
   getPaginationList,

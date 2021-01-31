@@ -17,7 +17,7 @@ function* handleSubmit(action) {
       organization,
       repository,
       perPage: ISSUES_PER_PAGE,
-      page: 0,
+      page: 1,
     });
 
     Navigation.push(action.payload.componentId, {
