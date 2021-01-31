@@ -2,6 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 
 import IssuesList from '../IssuesList';
+import Pagination from '../Pagination';
 import usePresenter from './presenter';
 import styles from './styles';
 
@@ -16,6 +17,7 @@ const IssuesScreen = (props) => {
         <Text style={styles.bold}>{repository}</Text>
       </Text>
       <IssuesList />
+      <Pagination />
     </>
   );
 };
