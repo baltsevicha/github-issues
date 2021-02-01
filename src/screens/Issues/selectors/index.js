@@ -13,6 +13,7 @@ const getIssues = (state) => getState(state).issues;
 const getIssuesCount = (state) => getState(state).issuesCount;
 const getCurrentPage = (state) => getState(state).currentPage;
 const getNextPage = (state) => getState(state).nextPage;
+const getSelectedState = (state) => getState(state).selectedState;
 
 const getIsDisabledPagination = createSelector(
   getCurrentPage,
@@ -47,4 +48,5 @@ export default {
   getHasPagination,
   getPaginationList,
   getIsDisabledPagination,
+  getSelectedState,
 };

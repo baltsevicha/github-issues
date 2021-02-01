@@ -1,25 +1,25 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { initIssues, resetIssues } from '../../actions';
+import selectors from '../../selectors';
 
-export default ({
-  componentId,
-  organization,
-  repository,
-  issuesCount,
-  issues,
-}) => {
+export default (props) => {
   const dispatch = useDispatch();
+  const selectedState = useSelector(selectors.getSelectedState);
+  const issuesCount = useSelector(selectors.getIssuesCount);
 
   useEffect(() => {
-    dispatch(
-      initIssues({ componentId, organization, repository, issues, issuesCount })
-    );
+    dispatch(initIssues(props));
     return () => {
       dispatch(resetIssues());
     };
   }, []);
 
-  return { organization, repository, issuesCount };
+  return {
+    organization: props.organization,
+    repository: props.repository,
+    issuesCount,
+    selectedState: selectedState.toLowerCase(),
+  };
 };

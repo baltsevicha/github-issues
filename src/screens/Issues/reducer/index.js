@@ -7,6 +7,7 @@ import issuesCount from './issuesCount';
 import nextPage from './nextPage';
 import organization from './organization';
 import repository from './repository';
+import selectedState from './selectedState';
 
 export default combineReducers({
   componentId,
@@ -16,4 +17,5 @@ export default combineReducers({
   nextPage,
   organization,
   repository,
+  selectedState,
 });

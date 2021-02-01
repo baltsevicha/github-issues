@@ -19,6 +19,9 @@ ErrorScreen.options = {
     background: {
       color: '#82aaff',
     },
+    backButton: {
+      color: '#ffffff',
+    },
   },
 };
 

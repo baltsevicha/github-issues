@@ -3,10 +3,10 @@ import { Navigation } from 'react-native-navigation';
 import { SCREENS } from 'src/constants/screens';
 
 import HomeScreen from './Home';
-import IssuesScreen from './Issues';
 import ErrorScreen from './Error';
+import IssuesScreen, { registerIssuesSubScreensAndComponents } from './Issues';
 
-export const registerScreens = (storeWrapper) => {
+export const registerScreensWithComponents = (storeWrapper) => {
   Navigation.registerComponent(
     SCREENS.HOME,
     storeWrapper(HomeScreen),
@@ -24,4 +24,6 @@ export const registerScreens = (storeWrapper) => {
     storeWrapper(ErrorScreen),
     () => ErrorScreen
   );
+
+  registerIssuesSubScreensAndComponents(storeWrapper);
 };

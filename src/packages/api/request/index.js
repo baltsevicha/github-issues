@@ -3,7 +3,11 @@ function prepareGetQuery(params) {
     return `${key}=${params[key]}`;
   });
 
-  return `?${query.join('&')}`;
+  if (query.length > 0) {
+    return `?${query.join('&')}`;
+  }
+
+  return '';
 }
 
 export default (requestData) => {
@@ -14,6 +18,10 @@ export default (requestData) => {
   return fetch('https://api.github.com' + url + query, {
     method,
     body: body ? JSON.stringify(body) : null,
-    headers,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      ...headers,
+    },
   }).then((response) => response.json());
 };

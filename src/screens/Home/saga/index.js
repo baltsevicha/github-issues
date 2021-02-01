@@ -2,7 +2,7 @@ import { takeLatest, put, call } from 'redux-saga/effects';
 import { Navigation } from 'react-native-navigation';
 
 import { SCREENS } from 'src/constants/screens';
-import { ISSUES_PER_PAGE } from 'src/constants/issues';
+import { ISSUES_PER_PAGE, ISSUES_STATE } from 'src/constants/issues';
 import api from 'src/packages/api';
 
 import { submitForm, toggleLoading } from '../actions';
@@ -13,12 +13,16 @@ function* handleSubmit(action) {
   const { organization, repository } = action.payload;
 
   try {
-    const { issues, issuesCount } = yield call(api.issues.fetchIssues, {
-      organization,
-      repository,
-      perPage: ISSUES_PER_PAGE,
-      page: 1,
-    });
+    const { issues, issuesCount } = yield call(
+      api.issues.fetchIssuesWithCount,
+      {
+        organization,
+        repository,
+        perPage: ISSUES_PER_PAGE,
+        state: ISSUES_STATE.ALL,
+        page: 1,
+      }
+    );
 
     Navigation.push(action.payload.componentId, {
       component: {

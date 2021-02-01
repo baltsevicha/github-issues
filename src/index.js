@@ -1,11 +1,12 @@
 import { Navigation } from 'react-native-navigation';
 
 import { SCREENS } from './constants/screens';
-import { registerScreens } from './screens';
+import { registerScreensWithComponents } from './screens';
 import createStoreWrapper from './createStoreWrapper';
 
 const storeWrapper = createStoreWrapper();
-registerScreens(storeWrapper);
+
+registerScreensWithComponents(storeWrapper);
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({
