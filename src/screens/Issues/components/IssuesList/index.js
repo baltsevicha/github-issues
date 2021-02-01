@@ -1,11 +1,11 @@
 import React from 'react';
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, TouchableOpacity, Text } from 'react-native';
 
 import usePresenter from './presenter';
 import styles from './styles';
 
 const IssuesList = () => {
-  const { issues, listRef } = usePresenter();
+  const { issues, listRef, goToIssue } = usePresenter();
 
   return (
     <FlatList
@@ -13,11 +13,11 @@ const IssuesList = () => {
       data={issues}
       renderItem={({ item }) => {
         return (
-          <View style={styles.container}>
+          <TouchableOpacity style={styles.container} onPress={goToIssue(item)}>
             <Text style={styles.number}>#{item.number}</Text>
             <Text style={styles.title}>{item.title}</Text>
             <Text>comments: {item.comments.totalCount}</Text>
-          </View>
+          </TouchableOpacity>
         );
       }}
       keyExtractor={(item) => item.id.toString()}

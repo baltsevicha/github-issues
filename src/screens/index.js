@@ -5,6 +5,7 @@ import { SCREENS } from 'src/constants/screens';
 import HomeScreen from './Home';
 import ErrorScreen from './Error';
 import IssuesScreen, { registerIssuesSubScreensAndComponents } from './Issues';
+import IssuesDetails from './IssuesDetails';
 
 export const registerScreensWithComponents = (storeWrapper) => {
   Navigation.registerComponent(
@@ -23,6 +24,12 @@ export const registerScreensWithComponents = (storeWrapper) => {
     SCREENS.ERROR,
     storeWrapper(ErrorScreen),
     () => ErrorScreen
+  );
+
+  Navigation.registerComponent(
+    SCREENS.ISSUE_DETAILS,
+    storeWrapper(IssuesDetails),
+    () => IssuesDetails
   );
 
   registerIssuesSubScreensAndComponents(storeWrapper);
