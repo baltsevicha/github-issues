@@ -17,7 +17,7 @@ That's why I've added an input field "Personal access token".
 
 You can generate your own access token by [the next instruction](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
 
-If you don't want to paste each time to the input field token, you can replace the "TOKEN" constant by the next pass: `src/constants/auth.js`
+If you don't want to paste each time token to the input field, you can replace the "TOKEN" constant by the next pass: `src/constants/auth.js`
 
 ## packages
 
