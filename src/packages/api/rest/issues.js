@@ -1,45 +1,43 @@
 import request from '../request';
 import { SERVER_ERRORS, TOKEN } from '../constants';
 
-export const fetchIssuesWithCount = async (data) => {
-  const response = await Promise.all([
-    fetchIssues(data),
-    fetchIssuesCount(data),
-  ]);
+function prepareIssuesParams(data) {
+  console.log('data = ', data);
+  const { first, last, after, before, state, sort } = data;
 
-  return {
-    issues: response[0].issues,
-    issuesCount: response[1].issuesCount,
-  };
-};
+  const result = [];
 
-const fetchIssues = async (data) => {
-  const { organization, repository, perPage, page, state, sort } = data;
-
-  const response = await request({
-    url: `/repos/${organization}/${repository}/issues`,
-    method: 'GET',
-    params: {
-      per_page: perPage,
-      page,
-      state: state.toLowerCase(),
-      sort: sort.toLowerCase(),
-    },
-  });
-
-  if (response && response.message === 'Not Found') {
-    throw { message: SERVER_ERRORS.NOT_FOUND };
+  if (first) {
+    result.push(`first: ${first}`);
   }
 
-  return {
-    issues: response,
-  };
-};
+  if (last) {
+    result.push(`last: ${last}`);
+  }
 
-const fetchIssuesCount = async (data) => {
-  const { organization, repository, state } = data;
+  if (after) {
+    result.push(`after: "${after}"`);
+  }
 
-  const stateQuery = state === 'ALL' ? '' : `(states: ${state})`;
+  if (before) {
+    result.push(`before: "${before}"`);
+  }
+
+  if (state !== 'ALL') {
+    result.push(`states: ${state.toUpperCase()}`);
+  }
+
+  if (sort) {
+    result.push(`orderBy: { field: ${sort.toUpperCase()}, direction: DESC }`);
+  }
+
+  return `(${result.join(', ')})`;
+}
+
+export const fetchIssues = async (data) => {
+  const { organization, repository } = data;
+
+  const filters = prepareIssuesParams(data);
 
   const response = await request({
     url: '/graphql',
@@ -51,8 +49,20 @@ const fetchIssuesCount = async (data) => {
       query: `
         query {
           repository(owner:"${organization}", name:"${repository}") { 
-            issues${stateQuery} {
+            issues${filters} {
               totalCount,
+              nodes {
+                id,
+                number,
+                title,
+                comments {
+                  totalCount
+                }
+              }
+              pageInfo {
+                endCursor
+                startCursor
+              }
             }
           }
         }
@@ -60,7 +70,13 @@ const fetchIssuesCount = async (data) => {
     },
   });
 
+  if (response.errors && response.errors[0].type === SERVER_ERRORS.NOT_FOUND) {
+    throw { message: SERVER_ERRORS.NOT_FOUND };
+  }
+
   return {
+    issues: response.data.repository.issues.nodes,
     issuesCount: response.data.repository.issues.totalCount,
+    pageInfo: response.data.repository.issues.pageInfo,
   };
 };

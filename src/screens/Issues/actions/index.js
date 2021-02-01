@@ -17,3 +17,4 @@ export const updateNextPage = createAction(NAMESPACE + 'UPDATE_NEXT_PAGE');
 export const updateIssuesCount = createAction(
   NAMESPACE + 'UPDATE_ISSUES_COUNT'
 );
+export const updatePageInfo = createAction(NAMESPACE + 'UPDATE_PAGE_INFO');

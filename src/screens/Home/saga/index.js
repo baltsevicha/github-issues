@@ -17,15 +17,14 @@ function* handleSubmit(action) {
   const { organization, repository } = action.payload;
 
   try {
-    const { issues, issuesCount } = yield call(
-      api.issues.fetchIssuesWithCount,
+    const { issues, issuesCount, pageInfo } = yield call(
+      api.issues.fetchIssues,
       {
         organization,
         repository,
-        perPage: ISSUES_PER_PAGE,
+        first: ISSUES_PER_PAGE,
         state: ISSUES_STATE.ALL,
-        sort: ISSUES_SORT_FIELDS.UPDATED,
-        page: 1,
+        sort: ISSUES_SORT_FIELDS.CREATED,
       }
     );
 
@@ -35,6 +34,7 @@ function* handleSubmit(action) {
         passProps: {
           issues,
           issuesCount,
+          pageInfo,
           organization,
           repository,
         },

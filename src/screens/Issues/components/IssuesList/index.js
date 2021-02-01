@@ -16,7 +16,7 @@ const IssuesList = () => {
           <View style={styles.container}>
             <Text style={styles.number}>#{item.number}</Text>
             <Text style={styles.title}>{item.title}</Text>
-            <Text>comments: {item.comments}</Text>
+            <Text>comments: {item.comments.totalCount}</Text>
           </View>
         );
       }}

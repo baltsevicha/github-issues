@@ -7,7 +7,7 @@ export const ISSUES_STATE = {
 };
 
 export const ISSUES_SORT_FIELDS = {
-  CREATED: 'created',
-  UPDATED: 'updated',
-  COMMENTS: 'comments',
+  CREATED: 'CREATED_AT',
+  UPDATED: 'UPDATED_AT',
+  COMMENTS: 'COMMENTS',
 };

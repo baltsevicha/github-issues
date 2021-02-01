@@ -3,4 +3,4 @@ export const SERVER_ERRORS = {
 };
 
 // new account
-export const TOKEN = 'token e8b899d5ebfa64e132c44f66c422c59d613f594c';
+export const TOKEN = 'token 8289078a71288a7dc830c8a1cbedecfe59fef5e2';

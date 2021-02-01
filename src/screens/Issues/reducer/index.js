@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import componentId from './componentId';
 import issues from './issues';
 import currentPage from './currentPage';
+import pageInfo from './pageInfo';
 import issuesCount from './issuesCount';
 import nextPage from './nextPage';
 import organization from './organization';
@@ -15,6 +16,7 @@ export default combineReducers({
   issues,
   currentPage,
   issuesCount,
+  pageInfo,
   nextPage,
   organization,
   repository,
