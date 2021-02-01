@@ -23,6 +23,10 @@ export default (data) => {
     errors.repository = 'Required field';
   }
 
+  if (!data.token) {
+    errors.token = 'Required field';
+  }
+
   return errors;
 };
 

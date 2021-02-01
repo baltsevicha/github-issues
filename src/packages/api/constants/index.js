@@ -1,6 +1,7 @@
 export const SERVER_ERRORS = {
   NOT_FOUND: 'NOT_FOUND',
+  BAD_CREDENTIALS: 'BAD_CREDENTIALS',
 };
 
 // new account
-export const TOKEN = 'token 8289078a71288a7dc830c8a1cbedecfe59fef5e2';
+export const TOKEN = '0f816f80b6c9750784a9cfa533b0e7901ba8433a';

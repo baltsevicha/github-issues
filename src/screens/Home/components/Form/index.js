@@ -13,6 +13,7 @@ const Form = (props) => {
     <View>
       <Field label="Organization" name="organization" component={Input} />
       <Field label="Repository" name="repository" component={Input} />
+      <Field label="Personal access token" name="token" component={Input} />
       <TouchableOpacity
         onPress={handleSubmit}
         style={[styles.submit, isDisabledSubmit && styles.disabledSubmit]}

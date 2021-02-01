@@ -7,6 +7,7 @@ import {
   ISSUES_STATE,
   ISSUES_SORT_FIELDS,
 } from 'src/constants/issues';
+import { saveToken } from 'src/actions/auth';
 import api from 'src/packages/api';
 
 import { submitForm, toggleLoading } from '../actions';
@@ -14,12 +15,13 @@ import { submitForm, toggleLoading } from '../actions';
 function* handleSubmit(action) {
   yield put(toggleLoading());
 
-  const { organization, repository } = action.payload;
+  const { organization, repository, token } = action.payload;
 
   try {
     const { issues, issuesCount, pageInfo } = yield call(
       api.issues.fetchIssues,
       {
+        token,
         organization,
         repository,
         first: ISSUES_PER_PAGE,
@@ -27,6 +29,8 @@ function* handleSubmit(action) {
         sort: ISSUES_SORT_FIELDS.CREATED,
       }
     );
+
+    yield put(saveToken(token));
 
     Navigation.push(action.payload.componentId, {
       component: {

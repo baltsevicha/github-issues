@@ -2,7 +2,6 @@ import request from '../request';
 import { SERVER_ERRORS, TOKEN } from '../constants';
 
 function prepareIssuesParams(data) {
-  console.log('data = ', data);
   const { first, last, after, before, state, sort } = data;
 
   const result = [];
@@ -35,7 +34,7 @@ function prepareIssuesParams(data) {
 }
 
 export const fetchIssues = async (data) => {
-  const { organization, repository } = data;
+  const { organization, repository, token } = data;
 
   const filters = prepareIssuesParams(data);
 
@@ -43,7 +42,7 @@ export const fetchIssues = async (data) => {
     url: '/graphql',
     method: 'POST',
     headers: {
-      authorization: TOKEN,
+      authorization: `token ${token}`,
     },
     body: {
       query: `
@@ -69,6 +68,10 @@ export const fetchIssues = async (data) => {
       `,
     },
   });
+
+  if (response.message === 'Bad credentials') {
+    throw { message: SERVER_ERRORS.BAD_CREDENTIALS };
+  }
 
   if (response.errors && response.errors[0].type === SERVER_ERRORS.NOT_FOUND) {
     throw { message: SERVER_ERRORS.NOT_FOUND };

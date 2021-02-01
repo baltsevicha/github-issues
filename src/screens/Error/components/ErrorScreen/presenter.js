@@ -8,6 +8,10 @@ export default ({ errorMessage }) => {
       errorText = 'Repository not found';
       break;
     }
+    case SERVER_ERRORS.BAD_CREDENTIALS: {
+      errorText = 'Bad credentials';
+      break;
+    }
   }
 
   return { errorText };

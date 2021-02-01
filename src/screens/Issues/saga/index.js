@@ -4,6 +4,7 @@ import { Navigation } from 'react-native-navigation';
 import { SCREENS } from 'src/constants/screens';
 import { ISSUES_PER_PAGE } from 'src/constants/issues';
 import api from 'src/packages/api';
+import authSelectors from 'src/selectors/auth';
 
 import {
   loadNextPage,
@@ -58,6 +59,7 @@ function* updateScreen() {
   const currentPage = yield select(selectors.getCurrentPage);
   const selectedState = yield select(selectors.getSelectedState);
   const selectedSort = yield select(selectors.getSelectedSort);
+  const token = yield select(authSelectors.getToken);
 
   const paginationParams = yield call(preparePaginationParams);
 
@@ -65,6 +67,7 @@ function* updateScreen() {
     const { issues, issuesCount, pageInfo } = yield call(
       api.issues.fetchIssues,
       {
+        token,
         organization,
         repository,
         state: selectedState,
