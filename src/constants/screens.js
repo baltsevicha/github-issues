@@ -4,4 +4,5 @@ export const SCREENS = {
   ISSUES: 'Screen.Issues',
   ISSUES_FILTERS: 'Screen.Issues-filters',
   ISSUE_DETAILS: 'Screen.Issue-details',
+  HOME_FAVORITE: 'Screen.Home-favirite',
 };

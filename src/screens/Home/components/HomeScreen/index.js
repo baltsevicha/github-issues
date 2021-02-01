@@ -1,6 +1,8 @@
 import React from 'react';
 import { Form } from 'react-final-form';
 
+import { COMPONENTS } from 'src/constants/components';
+
 import FormComponent from '../Form';
 import usePresenter from './presenter';
 
@@ -26,6 +28,14 @@ Home.options = {
     background: {
       color: '#82aaff',
     },
+    rightButtons: [
+      {
+        id: 'filters',
+        component: {
+          name: COMPONENTS.FAVORITE,
+        },
+      },
+    ],
   },
 };
 

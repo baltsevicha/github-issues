@@ -1,12 +1,20 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import validations from 'src/packages/validations';
 import { TOKEN } from 'src/packages/api';
 
-import { submitForm } from '../../actions';
+import { submitForm, saveComponentId } from '../../actions';
 
 export default ({ componentId }) => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(saveComponentId(componentId));
+    return () => {
+      dispatch(saveComponentId(null));
+    };
+  }, []);
 
   return {
     initialValues: {

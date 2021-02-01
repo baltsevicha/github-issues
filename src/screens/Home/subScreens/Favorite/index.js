@@ -4,13 +4,12 @@ import { FlatList, TouchableOpacity, Text } from 'react-native';
 import usePresenter from './presenter';
 import styles from './styles';
 
-const IssuesList = () => {
-  const { issues, listRef, goToIssue } = usePresenter();
+const Favorite = (props) => {
+  const { favoriteIssues, goToIssue } = usePresenter(props);
 
   return (
     <FlatList
-      ref={listRef}
-      data={issues}
+      data={favoriteIssues}
       renderItem={({ item }) => {
         return (
           <TouchableOpacity style={styles.container} onPress={goToIssue(item)}>
@@ -26,4 +25,19 @@ const IssuesList = () => {
   );
 };
 
-export default IssuesList;
+Favorite.options = {
+  topBar: {
+    title: {
+      text: 'Favorite',
+      color: '#ffffff',
+    },
+    background: {
+      color: '#82aaff',
+    },
+    backButton: {
+      color: '#ffffff',
+    },
+  },
+};
+
+export default Favorite;
