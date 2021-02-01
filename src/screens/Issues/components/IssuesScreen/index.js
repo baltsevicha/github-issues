@@ -9,9 +9,13 @@ import usePresenter from './presenter';
 import styles from './styles';
 
 const IssuesScreen = (props) => {
-  const { organization, repository, issuesCount, selectedState } = usePresenter(
-    props
-  );
+  const {
+    organization,
+    repository,
+    issuesCount,
+    selectedState,
+    selectedSort,
+  } = usePresenter(props);
 
   return (
     <>
@@ -20,7 +24,8 @@ const IssuesScreen = (props) => {
         {' - '}
         <Text style={styles.bold}>{selectedState}</Text> issues for
         <Text style={styles.bold}>{organization}</Text>/
-        <Text style={styles.bold}>{repository}</Text>
+        <Text style={styles.bold}>{repository}</Text> and sorted by:{' '}
+        <Text style={styles.bold}>{selectedSort}</Text>
       </Text>
       <IssuesList />
       <Pagination />

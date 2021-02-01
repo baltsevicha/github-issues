@@ -8,6 +8,7 @@ import nextPage from './nextPage';
 import organization from './organization';
 import repository from './repository';
 import selectedState from './selectedState';
+import selectedSort from './selectedSort';
 
 export default combineReducers({
   componentId,
@@ -18,4 +19,5 @@ export default combineReducers({
   organization,
   repository,
   selectedState,
+  selectedSort,
 });

@@ -6,13 +6,32 @@ import usePresenter from './presenter';
 import styles from './styles';
 
 const Filters = () => {
-  const { selectedState, onValueChange, items } = usePresenter();
+  const {
+    selectedState,
+    selectedSort,
+    onStateChange,
+    onSortChange,
+    states,
+    sorts,
+  } = usePresenter();
 
   return (
     <View>
       <Text style={styles.label}>State:</Text>
-      <Picker selectedValue={selectedState} onValueChange={onValueChange}>
-        {items.map((item) => {
+      <Picker selectedValue={selectedState} onValueChange={onStateChange}>
+        {states.map((item) => {
+          return (
+            <Picker.Item
+              key={item.value}
+              label={item.label}
+              value={item.value}
+            />
+          );
+        })}
+      </Picker>
+      <Text style={styles.label}>Sort by:</Text>
+      <Picker selectedValue={selectedSort} onValueChange={onSortChange}>
+        {sorts.map((item) => {
           return (
             <Picker.Item
               key={item.value}

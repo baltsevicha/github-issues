@@ -2,7 +2,7 @@ import { takeLatest, select, call, put, all } from 'redux-saga/effects';
 import { Navigation } from 'react-native-navigation';
 
 import { SCREENS } from 'src/constants/screens';
-import { ISSUES_PER_PAGE, ISSUES_STATE } from 'src/constants/issues';
+import { ISSUES_PER_PAGE } from 'src/constants/issues';
 import api from 'src/packages/api';
 
 import {
@@ -12,6 +12,7 @@ import {
   updateNextPage,
   updateIssuesCount,
   loadOtherState,
+  loadOtherSort,
 } from '../actions';
 import selectors from '../selectors';
 
@@ -22,6 +23,7 @@ function* updateScreen() {
   const nextPage = yield select(selectors.getNextPage);
   const currentPage = yield select(selectors.getCurrentPage);
   const selectedState = yield select(selectors.getSelectedState);
+  const selectedSort = yield select(selectors.getSelectedSort);
 
   try {
     const { issues, issuesCount } = yield call(
@@ -31,6 +33,7 @@ function* updateScreen() {
         repository,
         perPage: ISSUES_PER_PAGE,
         state: selectedState,
+        sort: selectedSort,
         page: nextPage + 1,
       }
     );
@@ -55,5 +58,6 @@ export default function* () {
   yield all([
     takeLatest(loadNextPage.type, updateScreen),
     takeLatest(loadOtherState.type, updateScreen),
+    takeLatest(loadOtherSort.type, updateScreen),
   ]);
 }

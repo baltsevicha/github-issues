@@ -14,7 +14,7 @@ export const fetchIssuesWithCount = async (data) => {
 };
 
 const fetchIssues = async (data) => {
-  const { organization, repository, perPage, page, state } = data;
+  const { organization, repository, perPage, page, state, sort } = data;
 
   const response = await request({
     url: `/repos/${organization}/${repository}/issues`,
@@ -23,6 +23,7 @@ const fetchIssues = async (data) => {
       per_page: perPage,
       page,
       state: state.toLowerCase(),
+      sort: sort.toLowerCase(),
     },
   });
 

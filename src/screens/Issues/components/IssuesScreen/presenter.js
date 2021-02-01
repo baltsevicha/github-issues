@@ -7,6 +7,7 @@ import selectors from '../../selectors';
 export default (props) => {
   const dispatch = useDispatch();
   const selectedState = useSelector(selectors.getSelectedState);
+  const selectedSort = useSelector(selectors.getSelectedSort);
   const issuesCount = useSelector(selectors.getIssuesCount);
 
   useEffect(() => {
@@ -21,5 +22,6 @@ export default (props) => {
     repository: props.repository,
     issuesCount,
     selectedState: selectedState.toLowerCase(),
+    selectedSort: selectedSort.toLowerCase(),
   };
 };

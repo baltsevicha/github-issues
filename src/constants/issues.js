@@ -5,3 +5,9 @@ export const ISSUES_STATE = {
   OPEN: 'OPEN',
   CLOSED: 'CLOSED',
 };
+
+export const ISSUES_SORT_FIELDS = {
+  CREATED: 'created',
+  UPDATED: 'updated',
+  COMMENTS: 'comments',
+};
