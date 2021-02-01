@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import validations from 'src/packages/validations';
-import { TOKEN } from 'src/packages/api';
+import { TOKEN } from 'src/constants/auth';
 
 import { submitForm, saveComponentId } from '../../actions';
 

@@ -1,6 +1,6 @@
 import rest from './rest';
-import { SERVER_ERRORS, TOKEN } from './constants';
+import { SERVER_ERRORS } from './constants';
 
 export default rest;
 
-export { SERVER_ERRORS, TOKEN };
+export { SERVER_ERRORS };
