@@ -1,5 +1,5 @@
 import request from '../request';
-import { SERVER_ERRORS, TOKEN } from '../constants';
+import { SERVER_ERRORS } from '../constants';
 
 function prepareIssuesParams(data) {
   const { first, last, after, before, state, sort } = data;
