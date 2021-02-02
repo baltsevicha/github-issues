@@ -10,6 +10,10 @@
 
 > \$ yarn run ios
 
+## Run unit tests
+
+> \$ yarn test
+
 ## Github Authorization
 
 Github v4 API requires auth for requests.
