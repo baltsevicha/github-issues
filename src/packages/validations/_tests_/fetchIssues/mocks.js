@@ -1,4 +1,4 @@
-import generateRandomString from 'src/tests/helpers/generateRandomString';
+import generateRandomString from 'src/_tests_/helpers/generateRandomString';
 
 export const EMPTY_OBJECT = {
   INPUT: {},

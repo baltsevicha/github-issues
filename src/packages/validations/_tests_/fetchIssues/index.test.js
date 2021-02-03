@@ -12,7 +12,7 @@ import {
   NO_ERRORS,
 } from './mocks';
 
-describe('[validations] fetchIssues', () => {
+describe('[package][validations] fetchIssues', () => {
   it('empty object', () => {
     expect(validations.fetchIssues(EMPTY_OBJECT.INPUT)).toStrictEqual(
       EMPTY_OBJECT.OUTPUT

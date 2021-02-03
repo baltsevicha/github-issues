@@ -1,3 +1,5 @@
+import { BASE_URL } from '../constants';
+
 function prepareGetQuery(params) {
   const query = Object.keys(params).map((key) => {
     return `${key}=${params[key]}`;
@@ -15,7 +17,7 @@ export default (requestData) => {
 
   const query = prepareGetQuery(params);
 
-  return fetch('https://api.github.com' + url + query, {
+  return fetch(BASE_URL + url + query, {
     method,
     body: body ? JSON.stringify(body) : null,
     headers: {
