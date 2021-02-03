@@ -1,15 +1,12 @@
 /* global describe, it, expect  */
 
 import { select } from 'redux-saga/effects';
-import { Navigation } from 'react-native-navigation';
 
 import preparePaginationParams from '../preparePaginationParams';
 import selectors from '../../selectors';
 
 describe('[screen][Issues] saga', () => {
   it('[preparePaginationParams] first page', async () => {
-    Navigation.push = jest.fn();
-
     const generator = preparePaginationParams();
 
     let next = generator.next();
@@ -27,8 +24,6 @@ describe('[screen][Issues] saga', () => {
   });
 
   it('[preparePaginationParams] next page', async () => {
-    Navigation.push = jest.fn();
-
     const generator = preparePaginationParams();
 
     let next = generator.next();
@@ -55,8 +50,6 @@ describe('[screen][Issues] saga', () => {
   });
 
   it('[preparePaginationParams] prev page', async () => {
-    Navigation.push = jest.fn();
-
     const generator = preparePaginationParams();
 
     let next = generator.next();
@@ -83,8 +76,6 @@ describe('[screen][Issues] saga', () => {
   });
 
   it('[preparePaginationParams] last page', async () => {
-    Navigation.push = jest.fn();
-
     const generator = preparePaginationParams();
 
     let next = generator.next();
